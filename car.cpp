@@ -1,11 +1,28 @@
+/*----------------------------------------------------------
+ *				HTBLA-Leonding / Class: 2AHIF
+ * ---------------------------------------------------------
+ * Exercise Number: 8
+ * Title:			car.cpp
+ * Author:			Eichhorn Moritz
+ * ----------------------------------------------------------
+ * Description:
+ * Implementation of a car.
+ * ----------------------------------------------------------
+ */
+
 #include "car.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 
 #define CAR_PARK_SIZE 6
-#define MAX_ACCELERATION_RATE_AIXAM
-#define MAX_ACCELERATION_RATE_MULTIPLA
-#define MAX_ACCELERATION_RATE_AIXAM
+#define MAX_ACCELERATION_RATE_AIXAM 1
+#define MAX_ACCELERATION_RATE_MULTIPLA 2.26
+#define MAX_ACCELERATION_RATE_JEEP 3.14
+
+#define MAX_SPEED_AIXAM 45
+#define MAX_SPEED_MULTIPLA 170
+#define MAX_SPEED_JEEP 196
 
 struct TestCase {
   enum CarType car_type;
@@ -54,15 +71,50 @@ struct TestCase {
  }
 
  void set_acceleration_rate(Car car1, double acceleration){
-   if(acceleration >= 0)
+   if(acceleration >= -8)
    {
-     car1->acceleration_rate = acceleration;
+     switch (car1->car_type) {
+      case AIXAM:
+        if(acceleration <= MAX_ACCELERATION_RATE_AIXAM)
+        {
+          car1->acceleration_rate = acceleration;
+        }
+        else
+        {
+          car1->acceleration_rate = MAX_ACCELERATION_RATE_AIXAM;
+        }
+      break;
+      case FIAT_MULTIPLA:
+        if(acceleration <= MAX_ACCELERATION_RATE_MULTIPLA)
+        {
+         car1->acceleration_rate = acceleration;
+        }
+        else
+        {
+         car1->acceleration_rate = MAX_ACCELERATION_RATE_MULTIPLA;
+        }
+      break;
+      case JEEP:
+        if(acceleration <= MAX_ACCELERATION_RATE_JEEP)
+        {
+         car1->acceleration_rate = acceleration;
+        }
+        else
+        {
+         car1->acceleration_rate = MAX_ACCELERATION_RATE_JEEP;
+        }
+      break;
+     }
+   }
+   else
+   {
+     car1->acceleration_rate = -8;
    }
  }
 
  double get_speed(Car car1)
  {
-   return car1->speed;
+   return round(car1->speed);
  }
 
 void init(){
@@ -83,5 +135,22 @@ void init(){
     {
       car_park[i]->fill_level = 80;
     }
+  }
+}
+
+void accelerate(Car car1){
+  car1->speed += car1->acceleration_rate*3.6;
+
+  if((car1->car_type == AIXAM) && (car1->speed > MAX_SPEED_AIXAM))
+  {
+    car1->speed = MAX_SPEED_AIXAM;
+  }
+  else if((car1->car_type == FIAT_MULTIPLA) && (car1->speed > MAX_SPEED_MULTIPLA))
+  {
+    car1->speed = MAX_SPEED_MULTIPLA;
+  }
+  else if((car1->car_type ==JEEP) && (car1->speed > MAX_SPEED_JEEP))
+  {
+    car1->speed = MAX_SPEED_JEEP;
   }
 }

@@ -205,7 +205,7 @@ TEST(too_low_acceleration_rate_for_all_car_types)
  *
  * tests acceleration of car without any limits.
  ******************************************************************************/
-TEST(accelerate)
+TEST(acceleration)
 {
 	init();
 	Car car = get_car(AIXAM);

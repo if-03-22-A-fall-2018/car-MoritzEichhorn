@@ -32,7 +32,7 @@ TEST(too_high_acceleration_rate_for_multipla);
 TEST(too_high_acceleration_rate_for_jeep);
 TEST(too_low_acceleration_rate_for_all_car_types);
 
-TEST(accelerate);
+TEST(acceleration);
 TEST(init_resets_speed);
 TEST(accelerate_aixam_to_max_speed);
 TEST(accelerate_multipla_to_max_speed);

@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	ADD_TEST(too_high_acceleration_rate_for_jeep);
 	ADD_TEST(too_low_acceleration_rate_for_all_car_types);
 
-	ADD_TEST(accelerate);
+	ADD_TEST(acceleration);
 	ADD_TEST(init_resets_speed);
 	ADD_TEST(accelerate_aixam_to_max_speed);
 	ADD_TEST(accelerate_multipla_to_max_speed);
